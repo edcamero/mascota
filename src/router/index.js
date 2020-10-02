@@ -2,20 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Admin from '../views/Admin.vue'
 import Fundacion from '../views/Fundacion.vue'
+import Adoptante from '../views/Adoptante.vue'
+import Login from '../views/Auth/Login.vue'
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home
-  },
-
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
 
   {
@@ -29,11 +22,40 @@ const routes = [
     name: 'Fundacion',
     component: Fundacion
   },
+
+  {
+    path: '/adoptante',
+    name: 'Adoptante',
+    component: Adoptante,
+    meta:{
+      requiresAuth: true
+    }
+  },
+
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.beforeEach((to,from,next)=>{
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if(localStorage.getItem('isLogin')==='true'){
+      next();
+    }else{
+      next('/login')
+    }
+    }else{
+      next()
+    }
+  }
+)
 
 export default router
