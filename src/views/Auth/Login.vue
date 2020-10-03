@@ -61,7 +61,7 @@ export default {
     login() {
       const axios = require('axios').default;
       if(this.email=='demo@mascota.com'&&this.password=='demo'){
-        console.log(process.env.VUE_APP_RUTA_API+'login')
+        //console.log(process.env.VUE_APP_RUTA_API+'login')
         axios
           .get(process.env.VUE_APP_RUTA_API+'login')
           .then(response => (this.token = response.data.tokenUser,

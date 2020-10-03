@@ -4,6 +4,7 @@ import Admin from '../views/Admin.vue'
 import Fundacion from '../views/Fundacion.vue'
 import Adoptante from '../views/Adoptante.vue'
 import Login from '../views/Auth/Login.vue'
+import Register from '../views/Auth/Register.vue'
 const routes = [
   {
     path: '/',
@@ -36,6 +37,12 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
+    
+  },
+  {
+    path: '/Register',
+    name: 'Register',
+    component: Register,
     
   },
 ]
