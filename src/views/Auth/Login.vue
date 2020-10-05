@@ -65,7 +65,7 @@ export default {
         axios
           .get(process.env.VUE_APP_RUTA_API+'login')
           .then(response => (this.token = response.data.tokenUser,
-           console.log(response.data),
+            console.log(response.data),
             localStorage.setItem('isLogin', 'true'),
             localStorage.setItem('token', this.token),
             this.$root.isLogin=true,
@@ -73,7 +73,9 @@ export default {
            )
              
             
-          )
+          ).catch(function (error) {
+            console.log(error);
+          })
         
         }
       }

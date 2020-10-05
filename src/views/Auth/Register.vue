@@ -67,9 +67,15 @@ export default {
                 axios
                 .post(process.env.VUE_APP_RUTA_API+'adoptante/registrar',this.user)
                 .then(response => (
-                  console.log(response)
+                  alert("se ha registrado el nuevo usuario"),
+                  console.log(response.data),
+                  this.email=null,
+                  this.password=null,
+                  this.confirmPassword=null
+
                 )).catch(e => {
-                      console.log(e);
+                      console.log(e)
+                      this.errors.push("Correo ya se encuentra registrado")
                   })
 
             }else{
@@ -80,7 +86,7 @@ export default {
         },
         validar(){
             this.errors=[]
-            if(this.email&&this.password&&this.confirmPassword){
+            if(this.email&&this.password&&this.confirmPassword&&this.password==this.confirmPassword){
                 return true;
             }
 
@@ -94,6 +100,10 @@ export default {
 
             if(!this.confirmPassword){
                 this.errors.push("Porfavor confirmar contraseña")
+            }
+
+            if(this.password!=this.confirmPassword){
+                this.errors.push("Las dos contraseñas deben ser iguales")
             }
             
             return false;
