@@ -7,6 +7,9 @@
 export default {
   created(){
     console.log("creado")
+  },
+  mounted(){
+    console.log("mouted")
   }
 }
 </script>

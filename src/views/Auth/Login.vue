@@ -52,25 +52,35 @@
 <script>
 export default {
   data: () => ({
-    email: "",
-    password: "",
-    token:"hola"
+    email: null,
+    password: null,
+    token:"hola",
+    user:null
   }),
  
   methods: {
     login() {
       const axios = require('axios').default;
-      if(this.email=='demo@mascota.com'&&this.password=='demo'){
+       let formData = new FormData();
+      if(this.email&&this.password){
         //console.log(process.env.VUE_APP_RUTA_API+'login')
+        console.log(this.password)
+        formData.append('username', this.email);
+        formData.append('password', this.password);
         axios
-          .get(process.env.VUE_APP_RUTA_API+'login')
+          .post(process.env.VUE_APP_RUTA_API+'login',formData)
           .then(response => (this.token = response.data.tokenUser,
             console.log(response.data),
             localStorage.setItem('isLogin', 'true'),
             localStorage.setItem('token', this.token),
             this.$root.isLogin=true,
-            this.$router.push('/adoptante')
-           )
+            this.user=response.data.user,
+            localStorage.setItem('username',this.user.username),
+            localStorage.setItem('rol',this.user.rol.nombre),
+            this.redireccionar(this.user.rol.nombre)
+
+            
+           ),
              
             
           ).catch(function (error) {
@@ -78,6 +88,17 @@ export default {
           })
         
         }
+      },
+      redireccionar(rol){
+        console.log("redireccionando a:"+rol)
+        switch(rol){
+              case "adoptante":this.$router.push('/adoptante')
+                break;
+              case "admin":this.$router.push('/admin')
+                break;
+              case "fundacion":this.$router.push('/fundacion')
+                break;
+             }
       }
   }
 };

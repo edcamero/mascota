@@ -72,7 +72,7 @@ export default {
                   this.email=null,
                   this.password=null,
                   this.confirmPassword=null
-
+ 
                 )).catch(e => {
                       console.log(e)
                       this.errors.push("Correo ya se encuentra registrado")

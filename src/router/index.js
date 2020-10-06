@@ -15,13 +15,19 @@ const routes = [
   {
     path: '/admin',
     name: 'Admin',
-    component: Admin
+    component: Admin,
+    meta:{
+      requiresAuth: true
+    }
   },
 
   {
     path: '/fundacion',
     name: 'Fundacion',
-    component: Fundacion
+    component: Fundacion,
+    meta:{
+      requiresAuth: true
+    }
   },
 
   {
@@ -40,7 +46,7 @@ const routes = [
     
   },
   {
-    path: '/Register',
+    path: '/register',
     name: 'Register',
     component: Register,
     
@@ -55,7 +61,14 @@ const router = createRouter({
 router.beforeEach((to,from,next)=>{
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if(localStorage.getItem('isLogin')==='true'){
-      next();
+      if('/'+localStorage.getItem('rol')===to.path ){
+        next()
+      }else{
+        console.log(to.path )
+        next('/'+localStorage.getItem('rol'))
+      }
+      
+
     }else{
       next('/login')
     }

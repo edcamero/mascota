@@ -15,7 +15,8 @@
 export default {
 
   data: () => ({
-    isLogin:false
+    isLogin:false,
+    user:null
   }),
   created() {
     if (localStorage.isLogin=='true') {
