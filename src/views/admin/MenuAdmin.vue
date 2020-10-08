@@ -32,12 +32,48 @@
       <ul class="collapsible collapsible-accordion">
         <li>
           <a class="collapsible-header"
+            >Fundaciones<i class="material-icons">arrow_drop_down</i></a
+          >
+          <div class="collapsible-body">
+            <ul>
+              <li>
+                <router-link
+                  class="waves-effect waves-light"
+                  to="/admin/fundacion/registrar"
+                  >Agregar</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  class="waves-effect waves-light"
+                  to="/admin/fundacion/lista"
+                  >Listar</router-link
+                >
+              </li>
+
+             
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+
+    <li class="no-padding">
+      <ul class="collapsible collapsible-accordion">
+        <li>
+          <a class="collapsible-header"
             >Mascotas<i class="material-icons">arrow_drop_down</i></a
           >
           <div class="collapsible-body">
             <ul>
-              <li> <router-link  class="waves-effect waves-light" to="/fundacion/mascota/registrar">Agregar</router-link></li>
-   
+              <li>
+                <router-link
+                  class="waves-effect waves-light"
+                  to="/fundacion/mascota/registrar"
+                  >Agregar</router-link
+                >
+              </li>
+
               <li><a href="#!">Listar</a></li>
             </ul>
           </div>
