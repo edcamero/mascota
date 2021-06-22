@@ -9,5 +9,4 @@ import M from 'materialize-css'
 
 import 'material-design-icons/iconfont/material-icons.css'
 
-
 createApp(App).use(router,M).mount('#app')
